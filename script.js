@@ -1,7 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// ================= Hero Animations =================
-// (These are fine - they run on page load)
+//   Hero Animations  
 gsap.from("#hero-text", {
   opacity: 0,
   y: -50,
@@ -16,7 +15,7 @@ gsap.from(".hero-content p", {
   delay: 0.5,
 });
 
-gsap.from("#home .btn", { // Targeted #home .btn
+gsap.from("#home .btn", {  
   opacity: 0,
   scale: 0,
   duration: 1,
@@ -24,7 +23,7 @@ gsap.from("#home .btn", { // Targeted #home .btn
   ease: "elastic.out(1,0.5)",
 });
 
-// ================= About Section =================
+//  About Section 
 gsap.from(".about-container img", {
   scrollTrigger: {
     trigger: "#about",
@@ -46,7 +45,7 @@ gsap.from(".about-text", {
   delay: 0.3,
 });
 
-// ================= Skills Section =================
+//Skills Section  
 gsap.from(".skill-card", {
   scrollTrigger: {
     trigger: ".skills-section",
@@ -56,30 +55,11 @@ gsap.from(".skill-card", {
   y: 50,
   opacity: 0,
   duration: 1,
-  stagger: 0.3, // This staggers the cards, which is great
+  stagger: 0.3,  
   ease: "power4.out",
 });
 
-/* // --- Removed This Block ---
-// This animation is redundant because the parent .skill-card
-// is already being animated by GSAP. Animating all the icons
-// separately is bad for performance and conflicts with the
-// card animation. The icons will fade in with their card.
-
-gsap.from(".skill-card ul li i", {
-  scrollTrigger: {
-    trigger: ".skills-section",
-    start: "top 80%",
-  },
-  y: 20,
-  opacity: 0,
-  duration: 0.8,
-  stagger: 0.1,
-  ease: "back.out(1.7)",
-});
-*/
-
-// ================= Projects Section =================
+// Projects Section  
 gsap.from(".project-card", {
   scrollTrigger: {
     trigger: "#projects",
@@ -92,7 +72,7 @@ gsap.from(".project-card", {
   stagger: 0.2,
 });
 
-// ================= Contact Section =================
+// Contact Section  
 gsap.from("#contact h2", {
   scrollTrigger: {
     trigger: "#contact",
@@ -114,7 +94,7 @@ gsap.from("#contact form", {
   delay: 0.3,
 });
 
-// ================= Hero Floating Particles =================
+//  Hero Floating Particles  
 const canvas = document.getElementById("heroCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -149,8 +129,7 @@ function animateParticles() {
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     
-    // --- CORRECTED COLOR ---
-    ctx.fillStyle = "#00bfff"; // Was "#95c11e" (green)
+     ctx.fillStyle = "#00bfff";  
     
     ctx.fill();
   });
@@ -166,48 +145,38 @@ window.addEventListener("resize", () => {
   initParticles();
 });
 
-// ================= Contact Form Submission =================
-// This code listens for the page to be fully loaded
-document.addEventListener("DOMContentLoaded", function() {
+//   Contact Form Submission  
+ document.addEventListener("DOMContentLoaded", function() {
     
-    // Find your form and success message
-    const form = document.getElementById("contact-form");
+     const form = document.getElementById("contact-form");
     const successMessage = document.getElementById("success-message");
 
-    // Listen for the "submit" event
-    form.addEventListener("submit", function(event) {
+     form.addEventListener("submit", function(event) {
         
-        // 1. Stop the browser from navigating away
-        event.preventDefault(); 
+         event.preventDefault(); 
 
-        // 2. Get all the data from the form
-        const formData = new FormData(form);
+         const formData = new FormData(form);
         const actionURL = form.action;
 
-        // 3. Send the data in the background using 'fetch'
-        fetch(actionURL, {
+         fetch(actionURL, {
             method: 'POST',
             body: formData,
         })
-        .then(response => response.json()) // Get the {"created": 1} response
+        .then(response => response.json())  
         .then(data => {
             if (data.created) {
-                // 4. If successful, show your message
-                successMessage.style.display = 'block';
-                form.reset(); // Clear the form fields
+                 successMessage.style.display = 'block';
+                form.reset();  
 
-                // 5. (Optional) Hide the message after 5 seconds
-                setTimeout(() => {
+                 setTimeout(() => {
                     successMessage.style.display = 'none';
-                }, 5000);
+                }, 3000);
             } else {
-                // Handle a case where SheetDB has an error
-                alert("There was a problem. Please try again.");
+                 alert("There was a problem. Please try again.");
             }
         })
         .catch(error => {
-            // Handle any network errors
-            console.error('Error submitting form:', error);
+             console.error('Error submitting form:', error);
             alert("An error occurred. Please check the console and try again.");
         });
     });
