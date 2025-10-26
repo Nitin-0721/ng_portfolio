@@ -155,6 +155,63 @@ window.addEventListener("resize", () => {
   initParticles();
 });
 
+ //   Graphic Design Lightbox
+// ----------------------------
+//   Auto Scrolling Design Gallery
+// ----------------------------
+const track = document.querySelector(".design-track");
+
+if (track) {
+  gsap.to(track, {
+    xPercent: -50, // move half the width (since we duplicated)
+    ease: "none",
+    duration: 20,
+    repeat: -1,
+  });
+}
+
+// ----------------------------
+//   Graphic Design Lightbox
+// ----------------------------
+const galleryItems = document.querySelectorAll('.design-item img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.lightbox .close');
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+
+let currentIndex = 0;
+
+function showLightbox(index) {
+  lightbox.style.display = 'flex';
+  lightboxImg.src = galleryItems[index].src;
+  currentIndex = index;
+}
+
+galleryItems.forEach((img, index) => {
+  img.addEventListener('click', () => showLightbox(index));
+});
+
+closeBtn.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % galleryItems.length;
+  lightboxImg.src = galleryItems[currentIndex].src;
+});
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+  lightboxImg.src = galleryItems[currentIndex].src;
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) lightbox.style.display = 'none';
+});
+
+
+
 //   Contact Form Submission  
  document.addEventListener("DOMContentLoaded", function() {
     
@@ -191,3 +248,4 @@ window.addEventListener("resize", () => {
         });
     });
 });
+
