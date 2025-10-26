@@ -546,3 +546,72 @@ button:focus {
   }
   
 }
+
+/* Navbar styling */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  background: transparent;
+}
+
+/* Logo */
+.logo {
+  color: #00bfff;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Menu Icon */
+.menu-toggle {
+  display: none;
+  color: #00bfff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00bfff;
+}
+
+ @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;  
+  }
+
+  .nav-links {
+    display: none;  
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: right;
+  }
+
+  .nav-links.active {
+    display: flex;  
+  }
+}

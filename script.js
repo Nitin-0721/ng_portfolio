@@ -94,6 +94,16 @@ gsap.from("#contact form", {
   delay: 0.3,
 });
 
+// Navbar toggle button
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuToggle.querySelector("i").classList.toggle("fa-bars");
+  menuToggle.querySelector("i").classList.toggle("fa-xmark");
+});
+
 //  Hero Floating Particles  
 const canvas = document.getElementById("heroCanvas");
 const ctx = canvas.getContext("2d");
