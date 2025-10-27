@@ -156,23 +156,18 @@ window.addEventListener("resize", () => {
 });
 
  //   Graphic Design Lightbox
-// ----------------------------
-//   Auto Scrolling Design Gallery
-// ----------------------------
 const track = document.querySelector(".design-track");
 
 if (track) {
   gsap.to(track, {
-    xPercent: -50, // move half the width (since we duplicated)
+    xPercent: -50, 
     ease: "none",
     duration: 20,
     repeat: -1,
   });
 }
 
-// ----------------------------
-//   Graphic Design Lightbox
-// ----------------------------
+
 const galleryItems = document.querySelectorAll('.design-item img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
